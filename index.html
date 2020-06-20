@@ -22,7 +22,16 @@
 <body>
     
 <!-- Header area with title for dashboard "Your Weather" (maybe with moment.js for time of day)-->
-
+<header>
+    <div class="jumbotron jumbotron-fluid bg-secondary text-white">
+        <div class="container">
+            <h1 class="display-4 mb-0">Weather Dashboard</h1>
+            <p class="small text-monospace text-white pl-4 mt-0 pt-0"><a class="text-reset text-decoration-none" href="https://www.chartroomcreative.com"><img src="https://chartroomcreative.com/wp-content/uploads/2020/06/CRC-Logo_circleConly-WHITE-onTransp_1000x970.png" width="15px"> Just Another App from the <abbr title="Cheers, from Chart Room Creative">chartroom</abbr>.</a></p>
+            <small class="lead"><em>Whether the weather is warm, or whether the weather is hot &mdash; use the weather dashboard to help you weather the weather....</em></small>
+            <p class="small lead text-right"><em>(whether you like today's weather or not)</em></small>
+        </div>
+    </div>
+</header>
 <!-- Row container - 2 colummns -->
 <!-- left column 1/3 : search for a city? input field and search icon  -->
 <!-- left column "/": list of city buttons from previous searches (populated from local storage) -->
@@ -32,7 +41,7 @@
     2) Temperature: (temperature in F - with &deg;F)
     3) Humidity: (humidity - e.g. 41%)
     4) Wind Speed: (wind speed - e.g. 4.7 MPH)
-    5) UV index: (UV index - e.g. 9.49) - highlighted with color behind for favorable, moderate, or severe
+    5) UV index: (UV index - e.g. 9.49) - highlighted with color behind for favorable, moderate, or severe (will use class="badge-badge-success text-wrap", etc.)
     
     bottom:
     5 day forecast:
