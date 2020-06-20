@@ -23,14 +23,16 @@
     
 <!-- Header area with title for dashboard "Your Weather" (maybe with moment.js for time of day)-->
 <header>
-    <div class="jumbotron jumbotron-fluid bg-secondary text-white">
+    <div class="jumbotron jumbotron-fluid bg-secondary text-white pt-3 pb-2 shadow">
         <div class="container">
             <h1 class="display-4 mb-0">Weather Dashboard</h1>
-            <p class="small text-monospace text-white pl-4 mt-0 pt-0"><a class="text-reset text-decoration-none" href="https://www.chartroomcreative.com"><img src="https://chartroomcreative.com/wp-content/uploads/2020/06/CRC-Logo_circleConly-WHITE-onTransp_1000x970.png" width="15px"> Just Another App from the <abbr title="Cheers, from Chart Room Creative">chartroom</abbr>.</a></p>
-            <small class="lead"><em>Whether the weather is warm, or whether the weather is hot &mdash; use the weather dashboard to help you weather the weather....</em></small>
-            <p class="small lead text-right"><em>(whether you like today's weather or not)</em></small>
-        </div>
-    </div>
+            <p class="small text-monospace text-white pl-4 mt-0 pt-0"><a class="text-reset text-decoration-none" href="https://www.chartroomcreative.com"><img src="https://chartroomcreative.com/wp-content/uploads/2020/06/CRC-Logo_circleConly-WHITE-onTransp_1000x970.png" width="15px"> just another app from the <abbr title="Cheers, from Chart Room Creative">chartroom</abbr>.</a></p>
+            <div class="container border-top">
+                <small class="lead"><em>Whether the weather is cold, or whether the weather is hot &mdash; use this dashboard to help you weather the weather....</em></small>
+                <p class="small lead text-right"><em>(whether you like today's weather or not)</em></p>
+            </div> <!-- end of quote container div-->
+        </div> <!-- end of header copy container div-->
+    </div> <!-- end of jumbotron div -->
 </header>
 <!-- Row container - 2 colummns -->
 <!-- left column 1/3 : search for a city? input field and search icon  -->
@@ -48,10 +50,34 @@
     - inner row
     - 5 day forecast blocks, 1 block per day
     - date at top, then icon for weather, then temp, then humidity
-
 -->
+<main class="container">
+    <div class="row">
+        <div id="cityCtr" class="col-xs-12 col-sm-12 col-md-3">
+
+        </div> <!-- end of #cityCtr -->
+        <div id="weatherCtr" class="col-xs-12 col-sm-12 col-md-9">
+            <div id="currWCtr" class="row">
+                Current weather will be here...
+            </div>
+            <div id="forecastCtr" class="row mt-5">
+                <div class="container pl-0 mb-3 border-bottom"><h2>5-Day Forecast</h2></div>
+                <div class="card border-secondary mb-3" style="max-width: 18rem;">
+                    <div class="card-header text-center"><strong>(e.g. Monday)</strong></div>
+                    <div class="card-body text-secondary pt-1">
+                        <h6 class="card-title text-center my-0 pt-0 pb-1 border-bottom">(e.g. 06/20)</h6>
+                        <div class="forecastTxt">
+                            <p class="wIcon"></p>
+                            <p class="card-text temp">(e.g. Temp: 86.84 &deg;F)</p>
+                            <p class="card-text humidity">(e.g. Humidity: 43%)</p>
+                        </div> <!-- end of .forecastTxt -->
+                    </div> <!-- end of .card-body -->
+                </div> <!-- end of .card-->
+            </div> <!-- end of #forecastCtr / .row -->
+        </div> <!-- end of #weatherCtr-->
+    </div> <!-- end of 1st parent row in main -->
+</main> <!-- end of main .container -->
 
 
-    
 </body>
 </html>
