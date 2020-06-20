@@ -3,3 +3,31 @@
 ? -- This file handles some customization of the default bootstrap styles as well as addition of any
 ? -- custom styles and style handling.
 */
+
+.bg-low {
+    background-color: green;
+    color: #fff;
+}
+
+
+.bg-moderate {
+    background-color: gold;
+    color: #000;
+}
+
+
+.bg-high {
+    background-color: darkorange;
+    color: #fff;
+}
+
+
+.bg-vhigh {
+    background-color: crimson;
+    color: #fff;
+}
+
+.bg-extreme {
+    background-color: maroon;
+    color: #fff;
+}

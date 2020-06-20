@@ -6,7 +6,9 @@
     <title>Weather Dashboard</title>
     <!-- Style Libraries/StyleSheets Included -->
     <!-- ! --- Bootstrap v4.5.0 framework -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
+    <!-- ! --- FontAwesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
     <!-- ! --- Custom Styles -->
     <link rel="stylesheet" href="styles.css">
     <!-- Incorporation of JS libraries Supporting Bootstrap framework v4.5.0: -->
@@ -21,7 +23,7 @@
 </head>
 <body>
     
-<!-- Header area with title for dashboard "Your Weather" (maybe with moment.js for time of day)-->
+<!-- Header area with title for dashboard "Your Weather"-->
 <header>
     <div class="jumbotron jumbotron-fluid bg-secondary text-white pt-3 pb-2 shadow">
         <div class="container">
@@ -53,26 +55,100 @@
 -->
 <main class="container">
     <div class="row">
-        <div id="cityCtr" class="col-xs-12 col-sm-12 col-md-3">
+        <div id="cityCtr" class="col-xs-12 col-sm-12 col-md-2">
 
         </div> <!-- end of #cityCtr -->
-        <div id="weatherCtr" class="col-xs-12 col-sm-12 col-md-9">
+        
+        <div id="weatherCtr" class="col-xs-12 col-sm-12 col-md-10">
             <div id="currWCtr" class="row">
-                Current weather will be here...
+                <div class="container pl-0 mb-3 border-bottom">
+                    <h2 id="currWTitle"><span id="currCity">Greensboro</span> (<span id="currDate">06/20/20</span>) <span id="currIcon"><img src="http://openweathermap.org/img/wn/10d@2x.png" /></span></h2>
+                </div> <!-- end of Current Weather title area -->
+                <div class="currWTxt">
+                    <p>Temperature: <span id="currTemp"></span> &deg;F</p>
+                    <p>Humidity: <span id="currHumidity"></span>%</p>
+                    <p>Wind: <span id="currWind"></span> MPH</p>
+                    <p>UV Index: 
+                        <span id="currUVspan" class="d-inline-block" tab-index="0"  data-toggle="tooltip" data-placement="right" title="tooltip text will go here">
+                            <button id="currUV" class="btn bg-extreme" style="pointer-events: none;" type="button" disabled>
+                                9.6 <i class="fas fa-info-circle fa-x"></i>
+                            </button>                            
+                        </span>
+                    </p>
+
+                </div> <!-- end of Current Weather Details Text -->
             </div>
             <div id="forecastCtr" class="row mt-5">
-                <div class="container pl-0 mb-3 border-bottom"><h2>5-Day Forecast</h2></div>
-                <div class="card border-secondary mb-3" style="max-width: 18rem;">
-                    <div class="card-header text-center"><strong>(e.g. Monday)</strong></div>
-                    <div class="card-body text-secondary pt-1">
-                        <h6 class="card-title text-center my-0 pt-0 pb-1 border-bottom">(e.g. 06/20)</h6>
-                        <div class="forecastTxt">
-                            <p class="wIcon"></p>
-                            <p class="card-text temp">(e.g. Temp: 86.84 &deg;F)</p>
-                            <p class="card-text humidity">(e.g. Humidity: 43%)</p>
-                        </div> <!-- end of .forecastTxt -->
-                    </div> <!-- end of .card-body -->
-                </div> <!-- end of .card-->
+                <div class="container pl-0 mb-3 border-bottom">
+                    <h2>5-Day Forecast</h2>
+                </div> <!-- end of forecast title area -->
+                <div class="card-deck">
+                    <!--TODO Forecast Day 1 -->
+                    <div class="card border-secondary mb-3" style="max-width: 18rem;">
+                        <div id="d1Day" class="card-header text-center"><strong>(e.g. Monday)</strong></div>
+                        <div class="card-body text-secondary pt-1">
+                            <h6 id="d1Date" class="card-title text-center my-0 pt-0 pb-1 border-bottom">(e.g. 06/20)</h6>
+                            <div class="forecastTxt">
+                                <p id="d1Icon" class="wIcon"></p>
+                                <p id="d1Temp" class="card-text temp">(e.g. Temp: 86.84 &deg;F)</p>
+                                <p id="d1Humidity" class="card-text humidity">(e.g. Humidity: 43%)</p>
+                            </div> <!-- end of .forecastTxt -->
+                        </div> <!-- end of .card-body -->
+                    </div> <!-- end of .card-->
+
+                    <!--TODO Forecast Day 2 -->
+                    <div class="card border-secondary mb-3" style="max-width: 18rem;">
+                        <div class="card-header text-center"><strong>(e.g. Monday)</strong></div>
+                        <div class="card-body text-secondary pt-1">
+                            <h6 class="card-title text-center my-0 pt-0 pb-1 border-bottom">(e.g. 06/20)</h6>
+                            <div class="forecastTxt">
+                                <p class="wIcon"></p>
+                                <p class="card-text temp">(e.g. Temp: 86.84 &deg;F)</p>
+                                <p class="card-text humidity">(e.g. Humidity: 43%)</p>
+                            </div> <!-- end of .forecastTxt -->
+                        </div> <!-- end of .card-body -->
+                    </div> <!-- end of .card-->
+
+                    <!--TODO Forecast Day 3 -->
+                    <div class="card border-secondary mb-3" style="max-width: 18rem;">
+                        <div class="card-header text-center"><strong>(e.g. Monday)</strong></div>
+                        <div class="card-body text-secondary pt-1">
+                            <h6 class="card-title text-center my-0 pt-0 pb-1 border-bottom">(e.g. 06/20)</h6>
+                            <div class="forecastTxt">
+                                <p class="wIcon"></p>
+                                <p class="card-text temp">(e.g. Temp: 86.84 &deg;F)</p>
+                                <p class="card-text humidity">(e.g. Humidity: 43%)</p>
+                            </div> <!-- end of .forecastTxt -->
+                        </div> <!-- end of .card-body -->
+                    </div> <!-- end of .card-->
+                    
+                    <!--TODO Forecast Day 4 -->
+                    <div class="card border-secondary mb-3" style="max-width: 18rem;">
+                        <div class="card-header text-center"><strong>(e.g. Monday)</strong></div>
+                        <div class="card-body text-secondary pt-1">
+                            <h6 class="card-title text-center my-0 pt-0 pb-1 border-bottom">(e.g. 06/20)</h6>
+                            <div class="forecastTxt">
+                                <p class="wIcon"></p>
+                                <p class="card-text temp">(e.g. Temp: 86.84 &deg;F)</p>
+                                <p class="card-text humidity">(e.g. Humidity: 43%)</p>
+                            </div> <!-- end of .forecastTxt -->
+                        </div> <!-- end of .card-body -->
+                    </div> <!-- end of .card-->
+                    
+                    <!--TODO Forecast Day 5 -->
+                    <div class="card border-secondary mb-3" style="max-width: 18rem;">
+                        <div class="card-header text-center"><strong>(e.g. Monday)</strong></div>
+                        <div class="card-body text-secondary pt-1">
+                            <h6 class="card-title text-center my-0 pt-0 pb-1 border-bottom">(e.g. 06/20)</h6>
+                            <div class="forecastTxt">
+                                <p class="wIcon"></p>
+                                <p class="card-text temp">(e.g. Temp: 86.84 &deg;F)</p>
+                                <p class="card-text humidity">(e.g. Humidity: 43%)</p>
+                            </div> <!-- end of .forecastTxt -->
+                        </div> <!-- end of .card-body -->
+                    </div> <!-- end of .card-->
+                </div> <!-- end of .card-deck-->
+            
             </div> <!-- end of #forecastCtr / .row -->
         </div> <!-- end of #weatherCtr-->
     </div> <!-- end of 1st parent row in main -->
