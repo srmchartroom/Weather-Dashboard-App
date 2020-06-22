@@ -47,6 +47,40 @@ let currHumidity = ""; // current selection's Humidity for today from oneCall AP
 let currWind = ""; // current selection's Wind Speed for today from oneCall API of OpenWeatherMap.org
 let currUVI = "" ; // current selection's UVI for today from oneCall API of OpenWeatherMap.org
 let currUVIicon = ' <i class="fas fa-info-circle fa-x"></i>';
+let daysOfWeek = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+let todayDay = "";
+// 5-DAY FORECAST DAY VARS //
+// Day 1:
+let d1Day = "";
+let d1Date = "";
+let d1MinTemp = "";
+let d1MaxTemp = "";
+let d1Humidity = "";
+// Day 2:
+let d2Day = "";
+let d2Date = "";
+let d2MinTemp = "";
+let d2MaxTemp = "";
+let d2Humidity = "";
+// Day 3:
+let d3Day = "";
+let d3Date = "";
+let d3MinTemp = "";
+let d3MaxTemp = "";
+let d3Humidity = "";
+// Day 4:
+let d4Day = "";
+let d4Date = "";
+let d4MinTemp = "";
+let d4MaxTemp = "";
+let d4Humidity = "";
+// Day 5:
+let d5Day = "";
+let d5Date = "";
+let d5MinTemp = "";
+let d5MaxTemp = "";
+let d5Humidity = "";
+
 
 //! --- AJAX CALL: WEATHER API OF OPENWEATHERMAP.ORG --- //
 
@@ -117,13 +151,103 @@ $.ajax({ // AJAX API call for OpenWeather's api to get lat and lon of current ci
         let currConditionDescrip = responseTwo.current.weather[0].description; // sets 
         currCondition = currConditionMain + ": " + currConditionDescrip;
         $("#currIcon").attr("data-original-title", currCondition);
-
         let currDay = new Date(responseTwo.current.dt * 1000).getDay();
         console.log(currDay);
+        todayDay = daysOfWeek[currDay];
+        console.log(todayDay);
+        let ddo1 = new Date(responseTwo.daily[1].dt * 1000).getDay();
+        console.log(ddo1);
+        if (currDay == 0 || currDay == 1) {
+          d1Day = daysOfWeek[currDay + 1];
+          d2Day = daysOfWeek[currDay + 2];
+          d3Day = daysOfWeek[currDay + 3];
+          d4Day = daysOfWeek[currDay + 4];
+          d5Day = daysOfWeek[currDay + 5];
+        } else if (currday == 2) {
+          d1Day = daysOfWeek[currDay + 1];
+          d2Day = daysOfWeek[currDay + 2];
+          d3Day = daysOfWeek[currDay + 3];
+          d4Day = daysOfWeek[currDay + 4];
+          d5Day = daysOfWeek[currDay - 2];
+        } else if (currDay == 3) {
+          d1Day = daysOfWeek[currDay + 1];
+          d2Day = daysOfWeek[currDay + 2];
+          d3Day = daysOfWeek[currDay + 3];
+          d4Day = daysOfWeek[currDay - 3];
+          d5Day = daysOfWeek[currDay - 2];         
+        } else if (currDay == 4) {
+          d1Day = daysOfWeek[currDay + 1];
+          d2Day = daysOfWeek[currDay + 2];
+          d3Day = daysOfWeek[currDay - 4];
+          d4Day = daysOfWeek[currDay - 3];
+          d5Day = daysOfWeek[currDay - 2];
+        } else if (currDay == 5) {
+          d1Day = daysOfWeek[currDay + 1];
+          d2Day = daysOfWeek[currDay - 5];
+          d2Day = daysOfWeek[currDay - 4];
+          d2Day = daysOfWeek[currDay - 3];
+          d2Day = daysOfWeek[currDay - 2];
+        } else if (currDay == 6) {
+          d1Day = daysOfWeek[currDay - 6];
+          d2Day = daysOfWeek[currDay - 5];
+          d2Day = daysOfWeek[currDay - 4];
+          d2Day = daysOfWeek[currDay - 3];
+          d2Day = daysOfWeek[currDay - 2];
+        }
+
+        $("#d1Day").html(d1Day);
+        d1Date = new Date(responseTwo.daily[1].dt * 1000).toLocaleDateString();
+        $("#d1Date").html(d1Date);
+        d1MinTemp = responseTwo.daily[1].temp.min
+        $("#d1MinTemp").html(d1MinTemp);
+        d1MaxTemp = responseTwo.daily[1].temp.max
+        $("#d1MaxTemp").html(d1MaxTemp);
+        d1Humidity = responseTwo.daily[1].humidity 
+        $("#d1Humidity").html(d1Humidity);
+
+        $("#d2Day").html(d2Day);
+        d2Date = new Date(responseTwo.daily[2].dt * 1000).toLocaleDateString();
+        $("#d2Date").html(d2Date);
+        d2MinTemp = responseTwo.daily[2].temp.min
+        $("#d2MinTemp").html(d2MinTemp);
+        d2MaxTemp = responseTwo.daily[2].temp.max
+        $("#d2MaxTemp").html(d2MaxTemp);
+        d2Humidity = responseTwo.daily[2].humidity
+        $("#d2Humidity").html(d2Humidity);
+
+        $("#d3Day").html(d3Day);
+        d3Date = new Date(responseTwo.daily[3].dt * 1000).toLocaleDateString();
+        $("#d3Date").html(d3Date);
+        d3MinTemp = responseTwo.daily[3].temp.min
+        $("#d3MinTemp").html(d3MinTemp);
+        d3MaxTemp = responseTwo.daily[3].temp.max
+        $("#d3MaxTemp").html(d3MaxTemp);
+        d3Humidity = responseTwo.daily[3].humidity
+        $("#d3Humidity").html(d3Humidity);
+
+
+        $("#d4Day").html(d4Day);
+        d4Date = new Date(responseTwo.daily[4].dt * 1000).toLocaleDateString();
+        $("#d4Date").html(d4Date);
+        d4MinTemp = responseTwo.daily[4].temp.min
+        $("#d4MinTemp").html(d4MinTemp);
+        d4MaxTemp = responseTwo.daily[4].temp.max
+        $("#d4MaxTemp").html(d4MaxTemp);
+        d4Humidity = responseTwo.daily[4].humidity
+        $("#d4Humidity").html(d4Humidity);
+
+        
+        $("#d5Day").html(d5Day);
+        d5Date = new Date(responseTwo.daily[5].dt * 1000).toLocaleDateString();
+        $("#d5Date").html(d5Date);
+        d5MinTemp = responseTwo.daily[5].temp.min
+        $("#d5MinTemp").html(d5MinTemp);
+        d5MaxTemp = responseTwo.daily[5].temp.max
+        $("#d5MaxTemp").html(d5MaxTemp);
+        d5Humidity = responseTwo.daily[5].humidity
+        $("#d5Humidity").html(d5Humidity);
+        });
     });
-
-});
-
 
 
 
