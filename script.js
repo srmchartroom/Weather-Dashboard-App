@@ -1,6 +1,87 @@
 //? This file handles all scripting functionality of the Weather Dashboard Application.
 //?  See specific comments within the below for direction on functionality for your own refactoring and use.
 
+//! --- API VARIABLES --- //
+
+let currCity = ""; // variable to be updated with searched city or selection of a previous city
+let fullCity = "q=" + currCity;
+let currZip = "27103"; // variable to be updated with search zip or selection of a previous city
+let fullZip = ("zip=" + currZip).trim();
+let currLocation = fullZip;
+let currIcon = "";
+
+//! --- NOTE TO DEVELOPERS & CONTRIBUTORS: Please be sure to secure your own free API key from api.openweathermap.org, and replace the value for the "apiKey" variable below --- //
+const apiKey = "23f82e4cdf1dd3340d14e89dd9f184b8"; // API key with openWeather  
+
+let queryURL1 = "https://api.openweathermap.org/data/2.5/weather?" + currLocation + "&appid=" + apiKey + "&units=imperial"; // add "&units=imperial" so Kelvin:Farenheit conversion isn't necessary
+let currLon = ""; // will be "r1.coord.lon"; // current longitude
+let finalLon = "lon=" + currLon;
+let currLat = ""; // will be "r1.coord.lat"; // current latitude
+let finalLat = "lat=" + currLat;
+let queryURL2 = ""; //"https://api.openweathermap.org/data/2.5/onecall?" + finalLat + "&" + finalLon + "exclude=hourly,daily&appid=" + apiKey;""
+
+$.ajax({ // <!-- ! AJAX API call for OpenWeather's api to get lat and lon of current city
+  url: queryURL1,
+  method: "GET"
+  }).then(function(response1) {  
+  console.log(response1);
+  currLon = response1.coord.lon;
+  currLat = response1.coord.lat;
+  currCity = response1.name;
+  currIcon = response1.weather[0].icon;
+  console.log(currIcon);
+  let currIconImg = '<img src="http://openweathermap.org/img/wn/' + currIcon + '@2x.png" />';
+  queryURL2 = "https://api.openweathermap.org/data/2.5/onecall?lat=" + currLat + "&lon=" + currLon + "&exclude=hourly,minutely&appid=" + apiKey + "&units=imperial";
+  let currDate = new Date(response1.dt * 1000).toLocaleDateString();
+  $("#currDate").html(currDate);
+  $("#currCity").html(currCity);
+  $("#currIcon").html(currIconImg);
+
+  let currDay = new Date(response1.dt * 1000).getDay();
+  console.log(currDay);
+  // let currMonth = (currDate.getMonth()) -1;
+  // console.log(currMonth);
+  // let currMDate = currDate.getDate();
+  // console.log(currMDate);
+  // let currYear = currDate.getFullYear();
+  // console.log(currYear);
+  // let combinedDate = currMonth + "/" + currMDate + "/" + currYear;
+  // console.log(combinedDate);
+  $.ajax({
+    url: queryURL2,
+    method: "GET"
+    }).then(function(responseB) {
+   console.log(responseB);
+  });
+  // let currDate = response1.dt;
+  // let milliseconds = currDate * 1000;
+  // let dateObject = new Date(milliseconds);
+  // let currDate = new Date(response1.dt * 1000).toLocaleString();
+  // currDate.getDay();
+  // console.log(currDate);
+  // let currMonth = (currDate.getMonth()) -1;
+  // console.log(currMonth);
+  // let currMDate = currDate.getDate();
+  // console.log(currMDate);
+  // let currYear = currDate.getFullYear();
+  // console.log(currYear);
+  // let combinedDate = currMonth + "/" + currMDate + "/" + currYear;
+  // console.log(combinedDate);
+});
+// queryURL2 = "https://api.openweathermap.org/data/2.5/onecall?lat=" + currLat + "&lon=" + currLon + "exclude=hourly,daily&appid=" + apiKey;
+  // console.log(queryURL2);
+  
+  
+
+let currTemp = "r2.current.temp"; // current temperature
+let currHumidity = "r2.current.humidity"; // current humidity
+let currWind = "r2.current.wind_speed"; // current wind speed
+let currUVI = "r2.current.uvi"; // current UV index
+
+let d1TempMin = "response.daily.temp.min"; // ?? ?? 
+
+// let queryURL2 = "https://api.openweathermap.org/data/2.5/onecall?" + finalLat + "&" + finalLon + "exclude=hourly,daily&appid=" + apiKey;
+
 
 //! --- UV TOOLTIPS --- //
 
