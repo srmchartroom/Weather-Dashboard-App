@@ -26,6 +26,15 @@ const uvClassExtreme = "bg-dark text-danger";
 
 //-----------------------------------------------------------------------------------------
 
+// CITY SEARCH AND SELECT
+// <div id="cityCtr" class="pr-3 col-xs-12 col-sm-12 col-md-3 border-right"></div> // CONTAINER FOR ALL THE CITY SEARCH AND SELECT
+// <div id="citySearchCtr">
+// <form id="citySearchForm">
+// <input type="text" class="form-control" id="citySearch" placeholder="City..." aria-describedby="citySmallTxt">
+// <input type="text" class="form-control" id="zipSearch" placeholder="Zip/Postal Code" aria-describedby="emailSmallTxt">
+// <button id="citySearchBtn" type="submit" class="btn btn-primary">Get the Weather</button>
+// <div id="prevCities">
+
 // CURRENT WEATHER CITY / DATE / ICON
 // <h2 id="currWTitle">
 // <span id="currCity">Greensboro</span>

@@ -21,7 +21,7 @@
     <!-- ! --- App-specific JavaScript file -->
     <script src="script.js"></script>
 </head>
-<body>
+<body">
     
 <!-- Header area with title for dashboard "Your Weather"-->
 <header>
@@ -53,18 +53,36 @@
     - 5 day forecast blocks, 1 block per day
     - date at top, then icon for weather, then temp, then humidity
 -->
-<main class="container">
+<div class="container container-fluid">
     <div class="row container">
-        <div id="cityCtr" class="col-xs-12 col-sm-12 col-md-2">
-            <form><input</form>
+        <div id="cityCtr" class="pr-3 col-xs-12 col-sm-12 col-md-3 border-right">
+            <div id="citySearchCtr">
+                <h6 class="mt-4">Search for a City's Forecast</h6>
+                <form id="citySearchForm">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="citySearch" placeholder="City..." aria-describedby="citySmallTxt">
+                        <small id="citySmallTxt" class="form-text text-muted pl-3">Either enter a city above...</small>   
+                    </div>
+                    <hr />
+                    <div class="form-group">
+                        <small id="zipSmallTxt" class="form-text text-muted pl-3">...Or enter a zip code here.</small>
+                        <input type="text" class="form-control" id="zipSearch" placeholder="Zip/Postal Code" aria-describedby="zipSmallTxt">
+                    </div>
+                    <button id="citySearchBtn" type="submit" class="btn btn-primary">Get the Weather</button>
+                </form> <!-- end of the the city search form #citySearchForm -->
+            </div>
+            <hr >
+            <div id="prevCities">
+                <!---Previously Searched Cities will go here. -->
+            </div>
         </div> <!-- end of #cityCtr -->
         
-        <div id="weatherCtr" class="col-xs-12 col-sm-12 col-md-10">
-            <div id="currWCtr" class="row">
-                <div class="container pl-0 mb-3 border-bottom">
+        <div id="weatherCtr" class="col-xs-12 col-sm-12 col-md-9">
+            <div id="currWCtr" class="row ml-3">
+                <div class="container pl-0 mb-3 border-bottom"> <!-- Current Weather title area -->
                     <h2 id="currWTitle"><span id="currCity">Greensboro</span> (<span id="currDate">06/20/20</span>) <span id="currIcon"><img src="http://openweathermap.org/img/wn/10d@2x.png" /></span></h2>
                 </div> <!-- end of Current Weather title area -->
-                <div class="currWTxt">
+                <div class="currWTxt"> <!-- Current Weather details text -->
                     <p>Temperature: <span id="currTemp"></span> &deg;F</p>
                     <p>Humidity: <span id="currHumidity"></span>%</p>
                     <p>Wind: <span id="currWind"></span> MPH</p>
@@ -75,15 +93,14 @@
                             </button>                            
                         </span>
                     </p>
-
                 </div> <!-- end of Current Weather Details Text -->
             </div>
-            <div id="forecastCtr" class="row mt-5">
+            <div id="forecastCtr" class="row mt-5 ml-3">
                 <div class="container pl-0 mb-3 border-bottom">
                     <h2>5-Day Forecast</h2>
                 </div> <!-- end of forecast title area -->
                 <div class="card-deck">
-                    <!--TODO Forecast Day 1 -->
+                    <!--! Forecast Day 1 -->
                     <div class="card border-secondary mb-3" style="max-width: 18rem;">
                         <div id="d1Day" class="card-header text-center"><strong>(e.g. Monday)</strong></div>
                         <div class="card-body text-secondary pt-1">
@@ -96,7 +113,7 @@
                         </div> <!-- end of .card-body -->
                     </div> <!-- end of .card-->
 
-                    <!--TODO Forecast Day 2 -->
+                    <!--! Forecast Day 2 -->
                     <div class="card border-secondary mb-3" style="max-width: 18rem;">
                         <div id="d2Day" class="card-header text-center"><strong>(e.g. Monday)</strong></div>
                         <div class="card-body text-secondary pt-1">
@@ -109,7 +126,7 @@
                         </div> <!-- end of .card-body -->
                     </div> <!-- end of .card-->
 
-                    <!--TODO Forecast Day 3 -->
+                    <!--! Forecast Day 3 -->
                     <div class="card border-secondary mb-3" style="max-width: 18rem;">
                         <div id="d3Day" class="card-header text-center"><strong>(e.g. Monday)</strong></div>
                         <div class="card-body text-secondary pt-1">
@@ -122,7 +139,7 @@
                         </div> <!-- end of .card-body -->
                     </div> <!-- end of .card-->
                     
-                    <!--TODO Forecast Day 4 -->
+                    <!--! Forecast Day 4 -->
                     <div class="card border-secondary mb-3" style="max-width: 18rem;">
                         <div id="d4Day" class="card-header text-center"><strong>(e.g. Monday)</strong></div>
                         <div class="card-body text-secondary pt-1">
@@ -135,7 +152,7 @@
                         </div> <!-- end of .card-body -->
                     </div> <!-- end of .card-->
                     
-                    <!--TODO Forecast Day 5 -->
+                    <!--! Forecast Day 5 -->
                     <div class="card border-secondary mb-3" style="max-width: 18rem;">
                         <div id="d5Day" class="card-header text-center"><strong>(e.g. Monday)</strong></div>
                         <div class="card-body text-secondary pt-1">
@@ -152,7 +169,7 @@
             </div> <!-- end of #forecastCtr / .row -->
         </div> <!-- end of #weatherCtr-->
     </div> <!-- end of 1st parent row in main -->
-</main> <!-- end of main .container -->
+</div> <!-- end of main .container -->
 
 
 </body>
