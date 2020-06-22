@@ -18,11 +18,11 @@ const ttVHigh = "Very High: 8-10 UVI | Wear SPF 30+ sunscreen, a shirt, sunglass
 const ttExtreme = "Moderate: 11+ UVI | Wear SPF 30+ sunscreen, a shirt, sunglasses, and a hat. Do not stay out in the sun for too long.";
 
 // Setting easy variables for handling the UV block's background class
-const uvClassLow = "bg-success text-white";
-const uvClassMod = "bg-warning text-white";
-const uvClassHigh = "bg-warning text-danger";
-const uvClassVHigh = "bg-danger";
-const uvClassExtreme = "bg-dark text-danger";
+const uvClassLow = "bg-low";
+const uvClassMod = "bg-moderate";
+const uvClassHigh = "bg-high";
+const uvClassVHigh = "bg-vhigh";
+const uvClassExtreme = "bg-extreme";
 
 //-----------------------------------------------------------------------------------------
 
@@ -91,3 +91,4 @@ const uvClassExtreme = "bg-dark text-danger";
   // <p id="d5Icon" class="wIcon"></p>
   // <p id="d5Temp" class="card-text temp">(e.g. Temp: 86.84 &deg;F)</p>
   // <p id="d5Humidity" class="card-text humidity">(e.g. Humidity: 43%)</p>
+
