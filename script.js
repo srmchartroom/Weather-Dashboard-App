@@ -23,3 +23,62 @@ const uvClassMod = "bg-warning text-white";
 const uvClassHigh = "bg-warning text-danger";
 const uvClassVHigh = "bg-danger";
 const uvClassExtreme = "bg-dark text-danger";
+
+//-----------------------------------------------------------------------------------------
+
+// CURRENT WEATHER CITY / DATE / ICON
+// <h2 id="currWTitle">
+// <span id="currCity">Greensboro</span>
+// (<span id="currDate">06/20/20</span>)
+// <span id="currIcon"><img src="http://openweathermap.org/img/wn/10d@2x.png" /></span></h2>
+
+// CURRENT WEATHER TEMP / HUMIDITY / WIND / UVI
+// <div class="currWTxt">
+// <span id="currTemp"></span> &deg;F</p>
+// <span id="currHumidity"></span>%</p>
+// <span id="currWind"></span> MPH</p>
+// <span id="currUVspan" class="d-inline-block" tab-index="0"  data-toggle="tooltip" data-placement="right" title="tooltip text will go here">
+// <button id="currUV" class="btn bg-extreme" style="pointer-events: none;" type="button" disabled> 9.6 <i class="fas fa-info-circle fa-x"></i></button>   
+
+// 5 DAY FORECAST
+// <div id="forecastCtr" class="row mt-5"> // CONTAINER FOR 5 DAY FORECAST
+  
+  // DAY 1: FORECAST
+  // <div id="d1Day" class="card-header text-center"><strong>(e.g. Monday)</strong></div> // DAY 1: DAY
+  // <h6 id="d1Date" class="card-title text-center my-0 pt-0 pb-1 border-bottom">(e.g. 06/20)</h6> // DAY 1: DATE
+  // <div class="forecastTxt"> // DAY 1: DETAILS FOR FORECAST
+  // <p id="d1Icon" class="wIcon"></p> // DAY 1: WEATHER ICON
+  // <p id="d1Temp" class="card-text temp">(e.g. Temp: 86.84 &deg;F)</p> // DAY 1: TEMP
+  // <p id="d1Humidity" class="card-text humidity">(e.g. Humidity: 43%)</p> // DAY 1: HUMIDITY
+
+  // DAY 2: FORECAST
+  // <div id="d2Day" class="card-header text-center"><strong>(e.g. Monday)</strong></div>
+  // <h6 id="d2Date" class="card-title text-center my-0 pt-0 pb-1 border-bottom">(e.g. 06/20)</h6>
+  // <div class="forecastTxt">
+  // <p id="d2Icon" class="wIcon"></p>
+  // <p id="d2Temp" class="card-text temp">(e.g. Temp: 86.84 &deg;F)</p>
+  // <p id="d2Humidity" class="card-text humidity">(e.g. Humidity: 43%)</p>
+
+  // DAY 3: FORECAST
+  // <div id="d3Day" class="card-header text-center"><strong>(e.g. Monday)</strong></div>
+  // <h6 id="d3Date" class="card-title text-center my-0 pt-0 pb-1 border-bottom">(e.g. 06/20)</h6>
+  // <div class="forecastTxt">
+  // <p id="d3Icon" class="wIcon"></p>
+  // <p id="d3Temp" class="card-text temp">(e.g. Temp: 86.84 &deg;F)</p>
+  // <p id="d3Humidity" class="card-text humidity">(e.g. Humidity: 43%)</p>
+
+  // DAY 4: FORECAST
+  // <div id="d4Day" class="card-header text-center"><strong>(e.g. Monday)</strong></div>
+  // <h6 id="d4Date" class="card-title text-center my-0 pt-0 pb-1 border-bottom">(e.g. 06/20)</h6>
+  // <div class="forecastTxt">
+  // <p id="d4Icon" class="wIcon"></p>
+  // <p id="d4Temp" class="card-text temp">(e.g. Temp: 86.84 &deg;F)</p>
+  // <p id="d4Humidity" class="card-text humidity">(e.g. Humidity: 43%)</p>
+
+  // DAY 5: FORECAST
+  // <div id="d5Day" class="card-header text-center"><strong>(e.g. Monday)</strong></div>
+  // <h6 id="d5Date" class="card-title text-center my-0 pt-0 pb-1 border-bottom">(e.g. 06/20)</h6>
+  // <div class="forecastTxt">
+  // <p id="d5Icon" class="wIcon"></p>
+  // <p id="d5Temp" class="card-text temp">(e.g. Temp: 86.84 &deg;F)</p>
+  // <p id="d5Humidity" class="card-text humidity">(e.g. Humidity: 43%)</p>
