@@ -31,3 +31,11 @@
     background-color: maroon;
     color: #fff;
 }
+
+.mouseElipsis {
+    color: rgba(0,0,0,.5);
+}
+
+.mouseElipsis:hover {
+    color: #000;
+}

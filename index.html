@@ -80,16 +80,15 @@
         <div id="weatherCtr" class="col-xs-12 col-sm-12 col-md-9">
             <div id="currWCtr" class="row ml-3">
                 <div class="container pl-0 mb-3 border-bottom"> <!-- Current Weather title area -->
-                    <h2 id="currWTitle"><span id="currCity">Greensboro</span> (<span id="currDate">06/20/20</span>) <span id="currIcon"><img src="http://openweathermap.org/img/wn/10d@2x.png" /></span></h2>
+                    <h2 id="currWTitle"><span id="currCity">Greensboro</span> (<span id="currDate">06/20/20</span>) <span id="currIcon" class="mouseElipsis" tab-index="0" data-toggle="tooltip" data-html="true" data-placement="top" title=""></span></h2>
                 </div> <!-- end of Current Weather title area -->
                 <div class="currWTxt"> <!-- Current Weather details text -->
-                    <p>Temperature: <span id="currTemp"></span> &deg;F</p>
-                    <p>Humidity: <span id="currHumidity"></span>%</p>
-                    <p>Wind: <span id="currWind"></span> MPH</p>
+                    <p>Temperature: <span id="currTemp"></span></p>
+                    <p>Humidity: <span id="currHumidity"></span></p>
+                    <p>Wind: <span id="currWind"></span></p>
                     <p>UV Index: 
-                        <span id="currUVspan" class="d-inline-block" tab-index="0"  data-toggle="tooltip" data-placement="right" title="tooltip text will go here">
-                            <button id="currUV" class="btn bg-extreme" style="pointer-events: none;" type="button" disabled>
-                                9.6 <i class="fas fa-info-circle fa-x"></i>
+                        <span id="currUVspan" class="d-inline-block" tab-index="0"  data-toggle="tooltip" data-html="true" data-placement="right" title="">
+                            <button id="currUVbtn" class="btn" style="pointer-events: none;" type="button" disabled>
                             </button>                            
                         </span>
                     </p>
