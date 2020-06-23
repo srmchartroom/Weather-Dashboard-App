@@ -60,9 +60,6 @@ $(function () {
 
 //? --- NOTE TO DEVELOPERS & CONTRIBUTORS: Please be sure to secure your own free API key from api.openweathermap.org, and replace the value for the "apiKey" in the queryURL1 and queryURL2 variables below --- //
 
-  
-
-  
 //! 5-DAY FORECAST DAY VARS //
 // Day 1: 
   let d1Day = ''; // Placeholder var for DAY of day 1 of 5-day forecast
@@ -70,30 +67,35 @@ $(function () {
   let d1MinTemp = ''; // Placeholder var for MINIMUM TEMPERATURE of day 1 of 5-day forecast
   let d1MaxTemp = ''; // Placeholder var for MAXIMUM TEMPERATURE of day 1 of 5-day forecast
   let d1Humidity = ''; // placeholder var for HUMIDITY of day 1 of 5-day forecast
+  let d1Icon = ""; // placeholder var for the ICON of day 1 of 5-day forecast 
 // Day 2:
   let d2Day = ''; // Placeholder var for DAY of day 2 of 5-day forecast
   let d2Date = ''; // Placeholder var for DATE of day 2 of 5-day forecast
   let d2MinTemp = ''; // Placeholder var for MINIMUM TEMPERATURE of day 2 of 5-day forecast
   let d2MaxTemp = ''; // Placeholder var for MAXIMUM TEMPERATURE of day 2 of 5-day forecast
   let d2Humidity = ''; // placeholder var for HUMIDITY of day 2 of 5-day forecast
+  let d2Icon = ""; // placeholder var for the ICON of day 2 of 5-day forecast
 // Day 3:
   let d3Day = ''; // Placeholder var for DAY of day 3 of 5-day forecast
   let d3Date = ''; // Placeholder var for DATE of day 3 of 5-day forecast
   let d3MinTemp = ''; // Placeholder var for MINIMUM TEMPERATURE of day 3 of 5-day forecast
   let d3MaxTemp = ''; // Placeholder var for MAXIMUM TEMPERATURE of day 3 of 5-day forecast
   let d3Humidity = ''; // placeholder var for HUMIDITY of day 3 of 5-day forecast
+  let d3Icon = ""; // placeholder var for the ICON of day 3 of 5-day forecast
 // Day 4:
   let d4Day = ''; // Placeholder var for DAY of day 4 of 5-day forecast
   let d4Date = ''; // Placeholder var for DATE of day 4 of 5-day forecast
   let d4MinTemp = ''; // Placeholder var for MINIMUM TEMPERATURE of day 4 of 5-day forecast
   let d4MaxTemp = ''; // Placeholder var for MAXIMUM TEMPERATURE of day 4 of 5-day forecast
   let d4Humidity = ''; // placeholder var for HUMIDITY of day 4 of 5-day forecast
+  let d4Icon = ""; // placeholder var for the ICON of day 4 of 5-day forecast
 // Day 5:
   let d5Day = ''; // Placeholder var for DAY of day 5 of 5-day forecast
   let d5Date = ''; // Placeholder var for DATE of day 5 of 5-day forecast
   let d5MinTemp = ''; // Placeholder var for MINIMUM TEMPERATURE of day 5 of 5-day forecast
   let d5MaxTemp = ''; // Placeholder var for MAXIMUM TEMPERATURE of day 5 of 5-day forecast
   let d5Humidity = ''; // placeholder var for HUMIDITY of day 5 of 5-day forecast
+  let d5Icon = ""; // placeholder var for the ICON of day 5 of 5-day forecast
 
 
  //! --- SEARCH FORM VARIABLES -- //
@@ -229,6 +231,8 @@ function getLatLon() {
           $("#d1MaxTemp").html(d1MaxTemp);
           d1Humidity = responseTwo.daily[1].humidity 
           $("#d1Humidity").html(d1Humidity);
+          d1Icon = responseTwo.daily[1].weather.icon;
+          $("#d1Icon").html('<img src="http://openweathermap.org/img/wn/' + d1Icon + '@2x.png" />');
 
           $("#d2Day").html(d2Day);
           d2Date = new Date(responseTwo.daily[2].dt * 1000).toLocaleDateString();
@@ -239,6 +243,7 @@ function getLatLon() {
           $("#d2MaxTemp").html(d2MaxTemp);
           d2Humidity = responseTwo.daily[2].humidity
           $("#d2Humidity").html(d2Humidity);
+          $("#d2Icon").html('<img src="http://openweathermap.org/img/wn/' + d2Icon + '@2x.png" />');
 
           $("#d3Day").html(d3Day);
           d3Date = new Date(responseTwo.daily[3].dt * 1000).toLocaleDateString();
@@ -249,6 +254,7 @@ function getLatLon() {
           $("#d3MaxTemp").html(d3MaxTemp);
           d3Humidity = responseTwo.daily[3].humidity
           $("#d3Humidity").html(d3Humidity);
+          $("#d3Icon").html('<img src="http://openweathermap.org/img/wn/' + d3Icon + '@2x.png" />');
 
           $("#d4Day").html(d4Day);
           d4Date = new Date(responseTwo.daily[4].dt * 1000).toLocaleDateString();
@@ -259,6 +265,7 @@ function getLatLon() {
           $("#d4MaxTemp").html(d4MaxTemp);
           d4Humidity = responseTwo.daily[4].humidity
           $("#d4Humidity").html(d4Humidity);
+          $("#d4Icon").html('<img src="http://openweathermap.org/img/wn/' + d4Icon + '@2x.png" />');
           
           $("#d5Day").html(d5Day);
           d5Date = new Date(responseTwo.daily[5].dt * 1000).toLocaleDateString();
@@ -269,6 +276,7 @@ function getLatLon() {
           $("#d5MaxTemp").html(d5MaxTemp);
           d5Humidity = responseTwo.daily[5].humidity
           $("#d5Humidity").html(d5Humidity);
+          $("#d5Icon").html('<img src="http://openweathermap.org/img/wn/' + d5Icon + '@2x.png" />');
         });
     }
 
