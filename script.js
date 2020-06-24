@@ -3,6 +3,8 @@
 
 //! --- Previous Searches Array
 
+
+
 let prevSearch = [];
   if ((localStorage.getItem("Cities")) == null) {
     localStorage.setItem("Cities", JSON.stringify(prevSearch));
@@ -11,8 +13,6 @@ let prevSearch = [];
     prevSearch = JSON.parse(localStorage.getItem("Cities"));
     console.log(prevSearch);
   }
-
-
 
 
 //! --- UV TOOLTIPS --- //
@@ -97,12 +97,26 @@ $(function () {
   let d5Humidity = ''; // placeholder var for HUMIDITY of day 5 of 5-day forecast
   let d5Icon = ""; // placeholder var for the ICON of day 5 of 5-day forecast
 
+// OTHER VARIABLES
 
- //! --- SEARCH FORM VARIABLES -- //
- getLatLon();
+  let currentCity = "";
+  let startingCity = "";
 
- 
- 
+  if (localStorage.getItem("lstCity") == null) {
+    localStorage.setItem("lstCity", "Raleigh");
+  } else {
+  // let startingCity = ""; // placeholder var for the STARTING CITY for the getLatLon(); function
+  currentCity = localStorage.getItem("lstCity"); // placeholder var for the CURRENT CITY for the getLatLon(); function
+  startingCity = localStorage.getItem("lstCity");
+  }
+//! --- RUN THE AJAX CALLS TO INITIALLY SET UP THE PAGE -- //
+
+  getLatLon();
+
+//! ********************* FUNCTIONS ********************** //
+
+ //! --- SEARCH FORM FUNCTION -- //
+
   function search() {
     console.log("submitted");
     let citySearch =  $("#citySearch");
@@ -119,22 +133,35 @@ $(function () {
     if (duplicate == false) {
       prevSearch.push(citySearch);
     }
-    localStorage.setItem("Cities", JSON.stringify(prevSearch));
-    console.log(prevSearch);  
-    //  console.log(currLocation);
+    startingCity = "";
+    currentCity = citySearch;
+    localStorage.setItem("lstCity", currentCity);
+    localStorage.setItem("Cities", JSON.stringify(prevSearch));  
     buttonSetup();
     getLatLon();
   }
 
   
-
-
-//! --- FUNCTIONS --- //
-
 function getLatLon() { 
 //! --- AJAX CALL: WEATHER API OF OPENWEATHERMAP.ORG --- //
-  let currCity = prevSearch[prevSearch.length -1];  // variable to be updated with searched city or selection of a previous city - placeholder initially set to empty
-   // API key with openWeather (Be sure to secure your own if you clone/download and use this repo)
+  // let currCity = prevSearch[prevSearch.length -1];  // variable to be updated with searched city or selection of a previous city - placeholder initially set to empty
+   
+  
+  // if (currentCity == "" && startingCity !== "") {
+  //   currCity = startingCity;
+  // } else if (currentCity !== "" && startingCity == "") {
+  //   currCity = currentCity;
+  // } else if (currentCity !== "" && startingCity !== "") {
+  //   currCity = currentCity;
+  // } else if (localStorage.getItem("lstCity") !== null) {
+  //   localStorage.getItem("lstCity");
+  // } else {  
+  //   currCity = "Raleigh";
+  // }
+ currCity = currentCity;
+
+
+  // API key with openWeather (Be sure to secure your own if you clone/download and use this repo)
   const apiKey = '23f82e4cdf1dd3340d14e89dd9f184b8';
   // URL for initial OpenWeatherMaps Weather API AJAX call
   let queryURL1 = 'https://api.openweathermap.org/data/2.5/weather?q=' + currCity + '&appid=' + apiKey + '&units=imperial'; 
@@ -148,7 +175,7 @@ function getLatLon() {
       currCityName = responseOne.name; // sets response's name value to "currCity" var
       $('#currCity').html(currCityName); // Updates the #currCity span's HTML with the currCity var's value
       currIcon = responseOne.weather[0].icon; // sets response's icon value to "currIcon" var
-      $('#currIcon').html('<img src="http://openweathermap.org/img/wn/' + currIcon + '@2x.png" style="margin-right: -20px;"/><span><i class="fas fa-info-circle pl-0 ml-0 mb-4 super align-bottom" style="font-size: small;"></i></span>'); // updates #currIcon span's HTML with an <img> tag leveraging the currIcon var which is set based on the response
+      $('#currIcon').html('<img src="http://openweathermap.org/img/wn/' + currIcon + '@2x.png" style="margin-right: -20px;"/><span><i class="currIconTooltip fas fa-info-circle pl-0 ml-0 mb-4 super align-bottom" style="font-size: small;"></i></span>'); // updates #currIcon span's HTML with an <img> tag leveraging the currIcon var which is set based on the response
       let currDate = new Date(responseOne.dt * 1000).toLocaleDateString(); // creates a new date object, converts it to milliseconds, and then converts it to the short MM/DD/YYYY format
       $('#currDate').html(currDate); // updates the #currDate span's HTML with the currDate var and converted date object value
       console.log(currLon);

@@ -20,9 +20,9 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <!-- ! --- Bootstraps js library -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-    <!-- ! --- Bootstraps Toggle v2.2.2 js
+    <!-- ! --- Bootstraps Toggle v2.2.2 js -->
     <!-- <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script> -->
-    <!-- ! --- App-specific JavaScript file --> -->
+    <!-- ! --- App-specific JavaScript file -->
     <script src="script.js"></script>
 </head>
 <body">
@@ -31,159 +31,195 @@
 <header>
     <div class="jumbotron jumbotron-fluid bg-secondary text-white pt-3 pb-2 shadow">
         <div class="container">
-            <h1 class="display-4 mb-0">Weather Dashboard</h1>
+            <h1 class="display-4 mb-0">Weather Dashboard</h1> <!--Title -->
             <p class="small text-monospace text-white pl-4 mt-0 pt-0"><a class="text-reset text-decoration-none" href="https://www.chartroomcreative.com"><img src="https://chartroomcreative.com/wp-content/uploads/2020/06/CRC-Logo_circleConly-WHITE-onTransp_1000x970.png" width="15px"> just another app from the <abbr title="Cheers, from Chart Room Creative">chartroom</abbr>.</a></p>
-            <div class="container border-top">
-                <small class="lead"><em>Whether the weather is cold, or whether the weather is hot &mdash; use this dashboard to help you weather the weather....</em></small>
-                <p class="small lead text-right"><em>(whether you like today's weather or not)</em></p>
+            <div class="container border-top"> <!-- Subtitle -->
+                <small class="lead"><em>Whether the weather is cold, or whether the weather is hot &mdash; use this dashboard to help you weather the weather....</em></small> <!-- Quote -->
+                <p class="small lead text-right"><em>(whether you like today's weather or not)</em></p> <!-- Sub-Quote -->
             </div> <!-- end of quote container div-->
         </div> <!-- end of header copy container div-->
     </div> <!-- end of jumbotron div -->
 </header>
 
-<div class="container container-fluid">
-    <div class="row container">
-        <div id="cityCtr" class="pr-3 col-xs-12 col-sm-12 col-md-3 border-right">
-            <div id="citySearchCtr">
-                <h6 class="mt-4">Search for a City's Forecast</h6>
-                <form id="citySearchForm">
-                    <input type="text" class="form-control" id="citySearch" placeholder="City..." aria-describedby="citySearchBtn" val="">
-                    <small id="citySmallTxt" class="form-text text-muted pl-3">Either enter a city above...</small>   
-                    <!-- <hr />
-                    <div id="zipSearchFormGroup" class="form-group">
-                        <small id="zipSmallTxt" class="form-text text-muted pl-3">...Or enter a zip code here.</small>
-                        <input type="text" class="form-control" id="zipSearch" placeholder="Zip/Postal Code" aria-describedby="zipSmallTxt">
-                    </div> -->
-                    <button id="citySearchBtn" type="button" class="btn btn-primary mt-2" style="width: 100%;">Get the Weather</button>
+<div class="container container-fluid"> <!-- end of main .container -->
+    <div class="row container"> <!-- Row to control Left Column -->
+        <div id="cityCtr" class="pr-3 col-xs-12 col-sm-12 col-md-3 border-right mb-4"> <!-- Single col for row -->
+            <div id="citySearchCtr"> <!-- Div holder for search form -->
+                
+                <h6 class="mt-4">Search for a City's Forecast</h6> <!-- Search form title -->
+                
+                <form id="citySearchForm"> <!-- search form -->
+                    <input type="text" class="form-control" id="citySearch" placeholder="City..." aria-describedby="citySearchBtn" val=""> <!-- input field for search -->
+                    <small id="citySmallTxt" class="form-text text-muted pl-3">Either enter a city above...</small> <!-- subtext under search field -->
+                    <button id="citySearchBtn" type="button" class="btn btn-primary mt-2" style="width: 100%;">Get the Weather</button> <!-- search button -->
                     
                 </form> <!-- end of the the city search form #citySearchForm -->
-            </div>
-            <script>
-                $("#citySearchBtn").click(function() {
-                    search();
+            </div> <!-- end of #citySearchCtr Div holder for search form-->
+
+            <script> // script for HTML page (vs that linked to in script.js) calling search form function
+                $("#citySearchBtn").click(function() { // jQuery click handler function to run the search() function on Search btn 'click'
+                    search(); // call to run search() function (see script.js() for search function details)
                 });
             </script>
-            <hr >
-            <div><h6>City Weather Quick Access:</h6></div>
-            <div id="prevCities">
+            
+            <hr > <!-- divider between search form and button group -->
+            
+            <div> <!-- div container for button group title -->
+                <h6>City Weather Quick Access:</h6> <!-- button group title -->
+            </div> <!-- end of div container for button group title -->
+            
+            <div id="prevCities"> <!-- div container #prevCities to hold dynamically generated buttons -->
                 <!---Previously Searched Cities will go here. -->
-            </div>
-            <script>
-                function buttonSetup () {
-                    let cityDiv = $("#prevCities");
-                    cityDiv.empty();
-                     prevSearch.forEach(function(i) {
-                     cityBtn = $("<button>").html(i);
-                     cityBtn.addClass("btn btn-outline-primary my-1 citySelectBtn");
-                     cityBtn.attr("type","button");
-                     cityBtn.attr("style","width:100%;");
-                     cityBtn.attr("id","citySelectBtn");
-                     cityDiv.prepend(cityBtn);
-                     });
-                 }
-                 buttonSetup ();
-                 
-                $(".citySelectBtn").click(function() {
-                    let cityName = this.html;
-                    prevSearch.forEach(function(item) {
-                        if(cityName == item) {
-                            prevSearch.pop(item);
-                            prevSearch.push(item);
-                            console.log("button is: " + cityName);
-                            console.log(prevSearch);
-                        } else {
-                            console.log("Doesn't match: " + item);
-                        }
+            </div> <!-- end  of div container for #prevCities -->
+            
+            <script> // script for HTML page (vs that linked to in script.js) executing button generation
+                function buttonSetup () { // function to create buttons
+                    let cityDiv = $("#prevCities"); // var to hold jquery selection of the button group's parent div
+                    cityDiv.empty(); // empties the div at the outset
+                    prevSearch.forEach(function(i) { // internal forEach loop to setup the buttons...
+                        cityBtn = $("<button>").html(i); // create button element with html of the city in the JSON object of cities that have searched
+                        cityBtn.addClass("btn btn-outline-primary my-1 citySelectBtn"); // add classes for styling and for future selection
+                        cityBtn.attr("type","button"); // add attribute of button type
+                        cityBtn.attr("style","width:100%;"); // make the button span the width of the column
+                        cityDiv.prepend(cityBtn); // prepend the button to the #prevCities div
                     });
-                    getLatLon();
-                });
+                }
+
+                buttonSetup (); // call/run the buttonSetup function above
+
+                $("#prevCities").on("click",".citySelectBtn", function() { //click handler for .citySelectBtn buttons...
+                    let cityName = $(this).html(); // sets a var cityName to html (city) of the button that was clicked
+                    prevSearch.forEach(function(item) { // run a for loop for all cities that have been searched
+                        if(cityName == item) { // if the city in the array matches the city stated in the button html
+                            startingCity = ""; // reset the startingCity var to empty
+                            currentCity = cityName; // set the currentCity var to the city name of the button
+                            localStorage.setItem("lstCity", currentCity); //set the current city localStorage for next/future session starting point
+                            getLatLon(); // then run the ajax calls function getLatLon()
+                        } else { // if, while looping, the button text doesn't match the city of this iteration's loop
+                            console.log("Doesn't match: " + item); // console log and do nothing further
+                        }
+                    }); 
+                }); 
 
             </script>
-        </div> <!-- end of #cityCtr -->
+
+        </div> <!-- end of #cityCtr row / left page column -->
         
-        <div id="weatherCtr" class="col-xs-12 col-sm-12 col-md-9">
-            <div id="currWCtr" class="row ml-3">
+        <div id="weatherCtr" class="col-xs-12 col-sm-12 col-md-9"> <!-- right col / weather details column -->
+            <div id="currWCtr" class="row ml-3"> <!-- internal row #currWCtr to handle the current weather details -->
                 <div class="container pl-0 mb-3 border-bottom"> <!-- Current Weather title area -->
-                    <h2 id="currWTitle"><span id="currCity"></span> (<span id="currDate"></span>) <span id="currIcon" class="mouseElipsis" tab-index="0" data-toggle="tooltip" data-html="true" data-placement="top" title=""></span></h2>
+                    <h2 id="currWTitle"><span id="currCity"></span> (<span id="currDate"></span>) <span id="currIcon" class="mouseElipsis" tab-index="0" data-toggle="tooltip" data-html="true" data-placement="top" title=""></span></h2> <!-- current weather title, date, and weather image -->
                 </div> <!-- end of Current Weather title area -->
                 <div class="currWTxt"> <!-- Current Weather details text -->
-                    <p>Temperature: <span id="currTemp"></span></p>
-                    <p>Humidity: <span id="currHumidity"></span></p>
-                    <p>Wind: <span id="currWind"></span></p>
-                    <p>UV Index: 
-                        <span id="currUVspan" class="d-inline-block" tab-index="0"  data-toggle="tooltip" data-html="true" data-placement="right" title="">
+                    <p>Temperature: <span id="currTemp"></span></p> <!-- placeholder span #currTemp for current temperature -->
+                    <p>Humidity: <span id="currHumidity"></span></p> <!-- placeholder span #currHumidity for current humidity -->
+                    <p>Wind: <span id="currWind"></span></p> <!-- placeholder span #currWind for current wind -->
+                    <p>UV Index: <span id="currUVspan" class="d-inline-block" tab-index="0"  data-toggle="tooltip" data-html="true" data-placement="right" title=""> 
                             <button id="currUVbtn" class="btn" style="pointer-events: none;" type="button" disabled>
-                            </button>                            
-                        </span>
+                            </button> <!-- disabled button control to display dynamically styled UVI-->
+                        </span> <!-- placeholder span #currUVspan for current UVI-->
                     </p>
                 </div> <!-- end of Current Weather Details Text -->
-            </div>
-            <div id="forecastCtr" class="row mt-5 ml-3">
-                <div class="container pl-0 mb-3 border-bottom">
-                    <h2>5-Day Forecast</h2>
+            </div> <!-- end of internal row #currWCtr -->
+
+            <div id="forecastCtr" class="row mt-5 ml-3"> <!-- internal row #forecastCtr to hold the 5-day forecast-->
+                
+                <div class="container pl-0 mb-3 border-bottom"> <!-- 5-day forecast title area div -->
+                    <h2>5-Day Forecast</h2> <!-- 5-day forecast title -->
                 </div> <!-- end of forecast title area -->
-                <div class="card-deck">
-                    <!--! Forecast Day 1 -->
-                    <div class="card border-secondary mb-3" style="max-width: 18rem;">
-                        <div id="d1Day" class="card-header text-center"><strong>(e.g. Monday)</strong></div>
-                        <div class="card-body text-secondary pt-1">
-                            <h6 id="d1Date" class="card-title text-center my-0 pt-0 pb-1 border-bottom">(e.g. 06/20)</h6>
-                            <div class="forecastTxt">
-                                <p id="d1Icon" class="wIcon"></p>
-                                <p id="d1Temp" class="card-text temp"><i class="fas fa-long-arrow-alt-up text-danger small;"></i> <span id="d1MaxTemp"></span> &deg;F / <i class="fas fa-long-arrow-alt-down text-primary small;"></i> <span id="d1MinTemp"></span> &deg;F</p>
-                                <p id="d1HumidityCtr" class="card-text humidity"><span class="small">Humidity: </span><span id=d1Humidity></span>%</p>
+
+                <div class="row row-cols-1 row-cols-xl-6 row-cols-lg-4 row-cols-md-4 row-cols-sm-3 row-cols-xs-3"> <!-- section to hold the cards that display the forecast details -->
+                    <!--! Forecast Day 1 --> 
+                    <div class="col mb-4 pl-0 pr-0 mr-4 border"><!-- 1st card container -->
+                        <div id="d1Day" class="card-header text-center"> <!-- div container #d1Day to hold day of week -->
+                            <strong>(e.g. Monday)</strong> <!-- sample day of week, replaced and repopulated dynamically by js code -->
+                        </div> <!-- end of #d1Day container for day of week -->
+                        <div class="card-body text-secondary pt-1"> <!-- card section to hold the remaining forecast details for the day -->
+                            <h6 id="d1Date" class="card-title text-center my-0 pt-0 pb-1 border-bottom">(e.g. 06/20)</h6> <!-- sample date, replaced and repopulated dynamically by js code -->
+                            <div class="forecastTxt"> <!-- parent container .forecastTxt for all other forecast details -->
+                                <p id="d1Icon" class="wIcon"></p> <!-- placeholder container for day 1 weather icon-->
+                                <p id="d1Temp" class="card-text temp"> <!-- placeholder p #d1Temp to hold min/max temps -->
+                                    <i class="fas fa-long-arrow-alt-up text-danger small;"></i> <span id="d1MaxTemp"></span> &deg;F / <i class="fas fa-long-arrow-alt-down text-primary small;"></i> <span id="d1MinTemp"></span> &deg;F <!-- spans #d1MaxTemp and #d1MinTemp to be dynamically populated with max and min temperatures from API response -->
+                                </p> <!-- end of placeholder p #d1Temp-->
+                                <p id="d1HumidityCtr" class="card-text humidity"> <!-- placeholder p #d1HumidityCtr to hold d1 humidity -->
+                                    <span class="small">Humidity: </span><span id=d1Humidity></span>% <!-- span #d1Humidity that's dynamically populated with d1 humidity from api object -->
+                                </p> <!-- end of placeholder p #d1HumidityCtr -->
                             </div> <!-- end of .forecastTxt -->
                         </div> <!-- end of .card-body -->
                     </div> <!-- end of .card-->
 
-                    <!--! Forecast Day 2 -->
-                    <div class="card border-secondary mb-3" style="max-width: 18rem;">
-                        <div id="d2Day" class="card-header text-center"><strong>(e.g. Monday)</strong></div>
-                        <div class="card-body text-secondary pt-1">
-                            <h6 id="d2Date" class="card-title text-center my-0 pt-0 pb-1 border-bottom">(e.g. 06/20)</h6>
-                            <div class="forecastTxt">
-                                <p id="d2Icon" class="wIcon"></p>
-                                <p id="d2Temp" class="card-text temp"><i class="fas fa-long-arrow-alt-up text-danger small;"></i> <span id="d2MaxTemp"></span> &deg;F / <i class="fas fa-long-arrow-alt-down text-primary small;"></i> <span id="d2MinTemp"></span> &deg;F</p>
-                                <p id="d2HumidityCtr" class="card-text humidity"><span class="small">Humidity: </span><span id=d2Humidity></span>%</p>
+                    <!--! Forecast Day 2 --> 
+                    <div class="col mb-4 pl-0 pr-0 mr-4 border"><!-- 2nd card container -->
+                        <div id="d2Day" class="card-header text-center"> <!-- div container #d2Day to hold day of week -->
+                            <strong>(e.g. Monday)</strong> <!-- sample day of week, replaced and repopulated dynamically by js code -->
+                        </div> <!-- end of #d2Day container for day of week -->
+                        <div class="card-body text-secondary pt-1"> <!-- card section to hold the remaining forecast details for the day -->
+                            <h6 id="d2Date" class="card-title text-center my-0 pt-0 pb-1 border-bottom">(e.g. 06/20)</h6> <!-- sample date, replaced and repopulated dynamically by js code -->
+                            <div class="forecastTxt"> <!-- parent container .forecastTxt for all other forecast details -->
+                                <p id="d2Icon" class="wIcon"></p> <!-- placeholder container for day 2 weather icon-->
+                                <p id="d2Temp" class="card-text temp"> <!-- placeholder p #d2Temp to hold min/max temps -->
+                                    <i class="fas fa-long-arrow-alt-up text-danger small;"></i> <span id="d2MaxTemp"></span> &deg;F / <i class="fas fa-long-arrow-alt-down text-primary small;"></i> <span id="d2MinTemp"></span> &deg;F <!-- spans #d2MaxTemp and #d2MinTemp to be dynamically populated with max and min temperatures from API response -->
+                                </p> <!-- end of placeholder p #d2Temp-->
+                                <p id="d2HumidityCtr" class="card-text humidity"> <!-- placeholder p #d2HumidityCtr to hold d2 humidity -->
+                                    <span class="small">Humidity: </span><span id=d2Humidity></span>% <!-- span #d2Humidity that's dynamically populated with d1 humidity from api object -->
+                                </p> <!-- end of placeholder p #d2HumidityCtr -->
                             </div> <!-- end of .forecastTxt -->
                         </div> <!-- end of .card-body -->
                     </div> <!-- end of .card-->
 
-                    <!--! Forecast Day 3 -->
-                    <div class="card border-secondary mb-3" style="max-width: 18rem;">
-                        <div id="d3Day" class="card-header text-center"><strong>(e.g. Monday)</strong></div>
-                        <div class="card-body text-secondary pt-1">
-                            <h6 id="d3Date" class="card-title text-center my-0 pt-0 pb-1 border-bottom">(e.g. 06/20)</h6>
-                            <div class="forecastTxt">
-                                <p id="d3Icon" class="wIcon"></p>
-                                <p id="d3Temp" class="card-text temp"><i class="fas fa-long-arrow-alt-up text-danger small;"></i> <span id="d3MaxTemp"></span> &deg;F / <i class="fas fa-long-arrow-alt-down text-primary small;"></i> <span id="d3MinTemp"></span> &deg;F</p>
-                                <p id="d3HumidityCtr" class="card-text humidity"><span class="small">Humidity: </span><span id=d3Humidity></span>%</p>
+                    <!--! Forecast Day 3 --> 
+                    <div class="col mb-4 pl-0 pr-0 mr-4 border"><!-- 3rd card container -->
+                        <div id="d3Day" class="card-header text-center"> <!-- div container #d3Day to hold day of week -->
+                            <strong>(e.g. Monday)</strong> <!-- sample day of week, replaced and repopulated dynamically by js code -->
+                        </div> <!-- end of #d3Day container for day of week -->
+                        <div class="card-body text-secondary pt-1"> <!-- card section to hold the remaining forecast details for the day -->
+                            <h6 id="d3Date" class="card-title text-center my-0 pt-0 pb-1 border-bottom">(e.g. 06/20)</h6> <!-- sample date, replaced and repopulated dynamically by js code -->
+                            <div class="forecastTxt"> <!-- parent container .forecastTxt for all other forecast details -->
+                                <p id="d3Icon" class="wIcon"></p> <!-- placeholder container for day 3 weather icon-->
+                                <p id="d3Temp" class="card-text temp"> <!-- placeholder p #d3Temp to hold min/max temps -->
+                                    <i class="fas fa-long-arrow-alt-up text-danger small;"></i> <span id="d3MaxTemp"></span> &deg;F / <i class="fas fa-long-arrow-alt-down text-primary small;"></i> <span id="d3MinTemp"></span> &deg;F <!-- spans #d3MaxTemp and #d3MinTemp to be dynamically populated with max and min temperatures from API response -->
+                                </p> <!-- end of placeholder p #d3Temp-->
+                                <p id="d3HumidityCtr" class="card-text humidity"> <!-- placeholder p #d3HumidityCtr to hold d3 humidity -->
+                                    <span class="small">Humidity: </span><span id=d3Humidity></span>% <!-- span #d3Humidity that's dynamically populated with d1 humidity from api object -->
+                                </p> <!-- end of placeholder p #d3HumidityCtr -->
                             </div> <!-- end of .forecastTxt -->
                         </div> <!-- end of .card-body -->
                     </div> <!-- end of .card-->
                     
-                    <!--! Forecast Day 4 -->
-                    <div class="card border-secondary mb-3" style="max-width: 18rem;">
-                        <div id="d4Day" class="card-header text-center"><strong>(e.g. Monday)</strong></div>
-                        <div class="card-body text-secondary pt-1">
-                            <h6 id="d4Date" class="card-title text-center my-0 pt-0 pb-1 border-bottom">(e.g. 06/20)</h6>
-                            <div class="forecastTxt">
-                                <p id="d4Icon" class="wIcon"></p>
-                                <p id="d4Temp" class="card-text temp"><i class="fas fa-long-arrow-alt-up text-danger small;"></i> <span id="d4MaxTemp"></span> &deg;F / <i class="fas fa-long-arrow-alt-down text-primary small;"></i> <span id="d4MinTemp"></span> &deg;F</p>
-                                <p id="d4HumidityCtr" class="card-text humidity"><span class="small">Humidity: </span><span id=d4Humidity></span>%</p>
+                    <!--! Forecast Day 4 --> 
+                    <div class="col mb-4 pl-0 pr-0 mr-4 border"><!-- 4th card container -->
+                        <div id="d4Day" class="card-header text-center"> <!-- div container #d4Day to hold day of week -->
+                            <strong>(e.g. Monday)</strong> <!-- sample day of week, replaced and repopulated dynamically by js code -->
+                        </div> <!-- end of #d4Day container for day of week -->
+                        <div class="card-body text-secondary pt-1"> <!-- card section to hold the remaining forecast details for the day -->
+                            <h6 id="d4Date" class="card-title text-center my-0 pt-0 pb-1 border-bottom">(e.g. 06/20)</h6> <!-- sample date, replaced and repopulated dynamically by js code -->
+                            <div class="forecastTxt"> <!-- parent container .forecastTxt for all other forecast details -->
+                                <p id="d4Icon" class="wIcon"></p> <!-- placeholder container for day 4 weather icon-->
+                                <p id="d4Temp" class="card-text temp"> <!-- placeholder p #d4Temp to hold min/max temps -->
+                                    <i class="fas fa-long-arrow-alt-up text-danger small;"></i> <span id="d4MaxTemp"></span> &deg;F / <i class="fas fa-long-arrow-alt-down text-primary small;"></i> <span id="d4MinTemp"></span> &deg;F <!-- spans #d4MaxTemp and #d4MinTemp to be dynamically populated with max and min temperatures from API response -->
+                                </p> <!-- end of placeholder p #d4Temp-->
+                                <p id="d4HumidityCtr" class="card-text humidity"> <!-- placeholder p #d4HumidityCtr to hold d4 humidity -->
+                                    <span class="small">Humidity: </span><span id=d4Humidity></span>% <!-- span #d4Humidity that's dynamically populated with d4 humidity from api object -->
+                                </p> <!-- end of placeholder p #d4HumidityCtr -->
                             </div> <!-- end of .forecastTxt -->
                         </div> <!-- end of .card-body -->
                     </div> <!-- end of .card-->
                     
                     <!--! Forecast Day 5 -->
-                    <div class="card border-secondary mb-3" style="max-width: 18rem;">
-                        <div id="d5Day" class="card-header text-center"><strong>(e.g. Monday)</strong></div>
-                        <div class="card-body text-secondary pt-1">
-                            <h6 id="d5Date" class="card-title text-center my-0 pt-0 pb-1 border-bottom">(e.g. 06/20)</h6>
-                            <div class="forecastTxt">
-                                <p id="d5Icon" class="wIcon"></p>
-                                <p id="d5Temp" class="card-text temp"><i class="fas fa-long-arrow-alt-up text-danger small;"></i> <span id="d5MaxTemp"></span> &deg;F / <i class="fas fa-long-arrow-alt-down text-primary small;"></i> <span id="d5MinTemp"></span> &deg;F</p>
-                                <p id="d5HumidityCtr" class="card-text humidity"><span class="small">Humidity: </span><span id=d5Humidity></span>%</p>
+                    <div class="col mb-4 pl-0 pr-0 border"> <!-- 5th card container -->
+                        <div id="d5Day" class="card-header text-center"> <!-- div container #d5Day to hold day of week -->
+                            <strong>(e.g. Monday)</strong> <!-- sample day of week, replaced and repopulated dynamically by js code -->
+                        </div> <!-- end of #d5Day container for day of week -->
+                        <div class="card-body text-secondary pt-1"> <!-- card section to hold the remaining forecast details for the day -->
+                            <h6 id="d5Date" class="card-title text-center my-0 pt-0 pb-1 border-bottom">(e.g. 06/20)</h6> <!-- sample date, replaced and repopulated dynamically by js code -->
+                            <div class="forecastTxt"> <!-- parent container .forecastTxt for all other forecast details -->
+                                <p id="d5Icon" class="wIcon"></p> <!-- placeholder container for day 5 weather icon-->
+                                <p id="d5Temp" class="card-text temp"> <!-- placeholder p #d5Temp to hold min/max temps -->
+                                    <i class="fas fa-long-arrow-alt-up text-danger small;"></i> <span id="d5MaxTemp"></span> &deg;F / <i class="fas fa-long-arrow-alt-down text-primary small;"></i> <span id="d5MinTemp"></span> &deg;F <!-- spans #d5MaxTemp and #d5MinTemp to be dynamically populated with max and min temperatures from API response -->
+                                </p> <!-- end of placeholder p #d5Temp-->
+                                <p id="d5HumidityCtr" class="card-text humidity"> <!-- placeholder p #d5HumidityCtr to hold d5 humidity -->
+                                    <span class="small">Humidity: </span><span id=d5Humidity></span>% <!-- span #d5Humidity that's dynamically populated with d5 humidity from api object -->
+                                </p> <!-- end of placeholder p #d5HumidityCtr -->
                             </div> <!-- end of .forecastTxt -->
                         </div> <!-- end of .card-body -->
                     </div> <!-- end of .card-->

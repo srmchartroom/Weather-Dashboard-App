@@ -39,3 +39,10 @@
 .mouseElipsis:hover {
     color: #000;
 }
+
+@media screen and (max-width: 400px) {
+    i.currIconTooltip {
+        display: none !important;
+    }
+}
+ 
