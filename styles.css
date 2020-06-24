@@ -4,43 +4,48 @@
 ? -- custom styles and style handling.
 */
 
-.bg-low {
+/* Sets the background and text color for low UV indices for the UVI object in current weather section */
+.bg-low { 
     background-color: green;
     color: #fff;
 }
 
-
-.bg-moderate {
+/* Sets the background and text color for moderate UV indices for the UVI object in current weather section */
+.bg-moderate { 
     background-color: gold;
     color: #000;
 }
 
-
-.bg-high {
+/* Sets the background and text color for high UV indices for the UVI object in current weather section */
+.bg-high { 
     background-color: darkorange;
     color: #fff;
 }
 
-
-.bg-vhigh {
+/* Sets the background and text color for very high UV indices for the UVI object in current weather section */
+.bg-vhigh { 
     background-color: crimson;
     color: #fff;
 }
 
-.bg-extreme {
+/* Sets the background and text color for extremely high UV indices for the UVI object in current weather section */
+.bg-extreme { 
     background-color: maroon;
     color: #fff;
 }
 
-.mouseElipsis {
+/* Sets default text color for info icon */
+.mouseElipsis { 
     color: rgba(0,0,0,.5);
 }
 
-.mouseElipsis:hover {
+/* Changes text color on hover for info icon */
+.mouseElipsis:hover { 
     color: #000;
 }
 
-@media screen and (max-width: 400px) {
+/* Hides the info icon on mobile when varying screensizes may split location of icon and img it describes */
+@media screen and (max-width: 400px) { 
     i.currIconTooltip {
         display: none !important;
     }
