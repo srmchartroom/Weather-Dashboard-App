@@ -97,6 +97,12 @@ $(function () {
   let currentCity = "";  // Placeholder var for Current City set in search and click actions for use in the ajax calls
   let startingCity = ""; // Placeholder var for Current City set in search and click actions for use in the ajax calls
 
+//! --- RUN THE AJAX CALLS TO INITIALLY SET UP THE PAGE -- //
+
+  getLatLon(); // call the ajax functions and populate/build the page
+
+//! --- Set local storage for last city -- //
+
   if (localStorage.getItem("lstCity") == null) { // Checks to see if a localStorage object exists for the last city displayed for weather
     localStorage.setItem("lstCity", "Raleigh"); // If it doesn't exist (for first-time users), set the localStorage object to "Raleigh" so that the initial view of the app on-load displays weather instead of rendering as blank...
     currentCity = localStorage.getItem("lstCity"); // set the currentCity var to the value in the localStorage object
@@ -104,9 +110,10 @@ $(function () {
   currentCity = localStorage.getItem("lstCity"); // set the currentCity var to the value in the localStorage object
   startingCity = localStorage.getItem("lstCity"); // and set the startingCity var to the value in the localStorage object
   }
-//! --- RUN THE AJAX CALLS TO INITIALLY SET UP THE PAGE -- //
 
-  getLatLon(); // call the ajax functions and populate/build the page
+//! --- RERUN THE AJAX CALLS TO INITIALLY SET UP THE PAGE -- //
+
+  getLatLon(); // call the ajax functions and populate/build the page again
 
 //! ********************* FUNCTIONS ********************** //
 
