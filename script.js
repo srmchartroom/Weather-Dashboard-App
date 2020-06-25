@@ -99,6 +99,7 @@ $(function () {
 
   if (localStorage.getItem("lstCity") == null) { // Checks to see if a localStorage object exists for the last city displayed for weather
     localStorage.setItem("lstCity", "Raleigh"); // If it doesn't exist (for first-time users), set the localStorage object to "Raleigh" so that the initial view of the app on-load displays weather instead of rendering as blank...
+    currentCity = localStorage.getItem("lstCity"); // set the currentCity var to the value in the localStorage object
   } else { //... If it does exist...
   currentCity = localStorage.getItem("lstCity"); // set the currentCity var to the value in the localStorage object
   startingCity = localStorage.getItem("lstCity"); // and set the startingCity var to the value in the localStorage object
